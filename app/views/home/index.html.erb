@@ -1,1 +1,68 @@
-<h3>Home</h3>
+<div class='home-header'>
+	<section id="homepage-intro">
+	<div class='row'>
+		<div class="small-12 colums">
+
+			 <%= render 'layouts/messages' %>
+		</div>
+		<div class="medium-6 large-7 columns">
+			<h1>HONDACNY</h1><br>
+			<h3>Anatoliy's Auto on the web! <br class="hide-for-small">See what we have, or
+
+			<%= link_to raw("stop by"), "http://maps.google.com/?q=#{ENV['ADDRESS']}" %>.
+			</h3>
+			<br>
+		</div>
+	</div>
+	</section>
+</div>
+
+<br/>
+
+<div class='row'>
+
+	<div class="small-6 large-4 columns">
+		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+		</a>
+	</div>
+		<div class="small-6 large-4 columns">
+		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+		</a>
+	</div>
+		<div class="small-6 large-4 columns">
+		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
+		</a>
+	</div>
+
+</div>
+
+
+
+<!-- <div class='black'>
+<div class='row'>
+
+<ul class="" data-orbit>
+  <li>
+    <img src="https://s3.amazonaws.com/sellcloud.static/background.jpg" alt="slide 1" />
+    <div class="orbit-caption">
+      Caption One.
+    </div>
+  </li>
+  <li>
+    <img src="https://s3.amazonaws.com/sellcloud.static/background.jpg" alt="slide 2" />
+    <div class="orbit-caption">
+      Caption Two.
+    </div>
+  </li>
+  <li>
+    <img src="https://s3.amazonaws.com/sellcloud.static/background.jpg" alt="slide 3" />
+    <div class="orbit-caption">
+      Caption Three.
+    </div>
+  </li>
+</ul>
+</div>
+</div> -->

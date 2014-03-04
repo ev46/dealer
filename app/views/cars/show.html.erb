@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <% @car.attached_assets.each do |image| %>
+    <%= image_tag image.avatar.url(:small) %>
+  <% end %>
+</div>
+
+<p>
+  <strong>Two door:</strong>
+  <%= @car.two_door %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @car.year %>
+</p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @car.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model %>
+</p>
+
+<p>
+  <strong>Vin:</strong>
+  <%= @car.vin %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @car.price %>
+</p>
+
+<p>
+  <strong>Warranty:</strong>
+  <%= @car.warranty %>
+</p>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>
