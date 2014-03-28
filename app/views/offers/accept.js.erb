@@ -1,0 +1,11 @@
+
+$("#counter-<%= @offer.id %>").html("<%= @offer.counter %>");
+<% if !@offer.counter.present? && @offer.respond? %>
+	$("#accept-<%= @offer.id %>").html("<span class='label success'>accepted</span>");
+	$("#small-status-<%= @offer.id %>").html("<span class='label success'>accepted</span> on <%= @offer.updated_at.strftime('%m/%d/%Y') %>");
+	
+<% else %>
+	$("#accept-<%= @offer.id %>").html("<span class='label'>countered</span>");
+	$("#small-status-<%= @offer.id %>").html("<span class='label'>countered</span> with <b><%= number_to_currency(@offer.counter, :precision => 0) %></b> on <%= @offer.updated_at.strftime('%m/%d/%Y') %>");
+
+<% end %>

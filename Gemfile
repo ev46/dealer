@@ -13,6 +13,7 @@ gem 'foundation-rails', '5.0.3.1'
 gem 'pg'
 gem 'simple_form'
 gem 'jquery-fileupload-rails'
+gem 'kaminari'
 gem 'paperclip', '~> 4.1'
 group :development do
   gem 'better_errors'

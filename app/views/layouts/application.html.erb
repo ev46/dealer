@@ -1,22 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Cars" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Cars" %>">
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%# Modernizr is required for Zurb Foundation %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "HONDACNY" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <div>
-      <!--  <%= render 'layouts/messages' %> -->
-       <%= yield %>
-    </div>
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <aside class="left-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label class="">HONDACNY</label></li>
+            <li data-no-turbolink><%= link_to 'HONDACNY', root_path %></li>
+          </ul>
+        
+          <ul class="off-canvas-list">
+            <!-- <li><label class="lead">Mobile Menu</label></li>
+            <li><a data-no-turbolink href="#">Section A</a></li>
+            <li><a data-no-turbolink href="#">Section Z</a></li> -->
+            <%= render 'layouts/navigation_links' %>
+          </ul>
+        </aside>
+
+        <nav class="tab-bar show-for-small">
+          <a class="left-off-canvas-toggle menu-icon ">
+            <span>HONDACNY</span>
+          </a>
+
+        </nav>
+
+        <nav class="top-bar hide-for-small" data-topbar>
+          <ul class="title-area">
+            <li class="name">
+              <h1><%= link_to 'HONDACNY', root_path, data: {no_turbolink: true} %></h1>
+            </li>
+          </ul>
+          <section class="top-bar-section">
+            <ul class='right'>
+              <li><a data-no-turbolink class="right-off-canvas-toggle menu-icon" href="#">Menu<span></span></a></li>
+            </ul>
+          </section>
+
+
+        </nav>
+        <aside class='right-off-canvas-menu hide-for-small'>
+          <ul class='off-canvas-list'>
+            <li><%= link_to 'Home', root_path, data: {no_turbolink: true} %></li>
+
+            <%= render 'layouts/navigation_links' %>
+          </ul>
+        </aside>
+
+
+      
+
+        <%= yield %>
+
+        <a class="exit-off-canvas"></a>
+      </div>
+      
+  </div>
+    <%= javascript_include_tag "application" %>
+
+    <div class='bottom-50'></div>
+
+
+    
   </body>
 </html>

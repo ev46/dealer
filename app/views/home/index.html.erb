@@ -2,42 +2,42 @@
 	<section id="homepage-intro">
 	<div class='row'>
 		<div class="small-12 colums">
-
 			 <%= render 'layouts/messages' %>
 		</div>
-		<div class="medium-6 large-7 columns">
-			<h1>HONDACNY</h1><br>
-			<h3>Anatoliy's Auto on the web! <br class="hide-for-small">See what we have, or
-
-			<%= link_to raw("stop by"), "http://maps.google.com/?q=#{ENV['ADDRESS']}" %>.
-			</h3>
-			<br>
+		<div class="small-12 columns">
+			<h3>ANATOLIY'S AUTO</h3>
+			<div>Welcome to HONDACNY, home of Anatoliy's Auto on the web.</div>
+		
 		</div>
 	</div>
 	</section>
 </div>
 
-<br/>
+<br>
 
 <div class='row'>
 
-	<div class="small-6 large-4 columns">
-		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-		</a>
-	</div>
-		<div class="small-6 large-4 columns">
-		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-		</a>
-	</div>
-		<div class="small-6 large-4 columns">
-		<a class="th" href="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-  			<img src="https://s3.amazonaws.com/sellcloud.static/background.jpg">
-		</a>
-	</div>
+<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
 
+	<% @cars.each do |car| %>
+		<li>
+      <div class='panel left-20'>
+			<a href="/cars/<%=car.id%>">
+				
+      			<%= image_tag car.attached_assets.first.avatar.url(:medium) %>
+      </a>
+      <h6><%= "#{car.year} #{car.make} #{car.model} #{number_to_currency(car.price, :precision => 0)} #{car.sold? ? 'SOLD' : ''}" %></h6>
+      </div>
+		</li>
+	<% end %>
+
+</ul>
 </div>
+
+<div class='row'>
+<%= paginate @cars %>
+</div>
+
 
 
 

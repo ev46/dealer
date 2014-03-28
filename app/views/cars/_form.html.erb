@@ -1,18 +1,24 @@
+
 <%= simple_form_for @car, :html => { :multipart => true } do |f| %>
   <%= f.error_notification %>
 
+  <div class="large-4 columns">
   <div class="form-inputs">
-    <%= f.input :two_door %>
-    <%= f.input :year, collection: (Time.now.year - 10)..(Time.now.year) %>
-    <%= f.input :make %>
-    <%= f.input :model %>
-    <%= f.input :vin %>
-    <%= f.input :price %>
-    <%= f.input :warranty %>
+    <%= f.input :two_door, :label => " is this a 2 door vehicle?" %>
+    <%= f.input :year, collection: (Time.now.year - 10)..(Time.now.year), :label => false, :selected => Time.now.year - 1 %>
+    <%= f.input :make, :label => false, :placeholder => 'Make' %>
+    <%= f.input :model, :label => false, :placeholder => 'Model' %>
+    <%= f.input :miles, :label => false, :placeholder => 'Miles' %>
+    <%= f.input :vin, :label => false, :placeholder => 'VIN' %>
+    <%= f.input :price, :label => false, :placeholder => 'Price' %>
+    <%= f.input :discount %>
+
+    <%= f.input :warranty, :input_html => { :value => '1 Year drivetrain parts and labor'} %>
     <%= file_field_tag('car_attached_assets_avatar', multiple: true, name: "car[attached_assets_attributes][][avatar]") %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, :class => "button expand" %>
+  </div>
   </div>
 <% end %>

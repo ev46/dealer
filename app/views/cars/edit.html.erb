@@ -1,6 +1,8 @@
-<h1>Editing car</h1>
+<div class='row'>
+<h2>edit car</h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @car %> |
-<%= link_to 'Back', cars_path %>
+<%= link_to 'Show', @car, data: {no_turbolink: true} %> |
+<%= link_to 'Back', cars_path, data: {no_turbolink: true} %>
+</div>

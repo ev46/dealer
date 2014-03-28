@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302174701) do
+ActiveRecord::Schema.define(version: 20140328185056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,23 @@ ActiveRecord::Schema.define(version: 20140302174701) do
     t.string   "warranty"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "miles",      default: 0
+    t.integer  "discount",   default: 200
+    t.boolean  "sold",       default: false
   end
+
+  create_table "offers", force: true do |t|
+    t.string   "email"
+    t.integer  "amount"
+    t.boolean  "respond",    default: false
+    t.integer  "car_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "counter"
+    t.boolean  "rejected",   default: false
+  end
+
+  add_index "offers", ["car_id"], name: "index_offers_on_car_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

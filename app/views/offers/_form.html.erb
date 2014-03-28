@@ -1,0 +1,24 @@
+<form data-abide action="/offers" method="post" data-remote="true" >
+			
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+		<%= hidden_field_tag :car_id, @car.id -%>
+
+		<div class='row'>
+			<div class='large-4 columns'>
+				<input type="number" name='amount' placeholder='enter offer' required >
+				<small class="error">A number value is required</small>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-4 columns'>
+				<input type="email" name='email' placeholder="your@email.com" required >
+				<small class="error">A valid email address is required</small>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-2 small-4 columns'>
+				<button type="submit" class="button postfix">Submit</button>
+			</div>
+		</div>
+			
+</form>

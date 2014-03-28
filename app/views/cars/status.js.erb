@@ -1,0 +1,9 @@
+<% if @car.sold? %>
+
+	$("#status-<%= @car.id %>").html("<span class='label success'><a data-method='put' href='/cars/<%= @car.id%>/status?sold=false'>set available</a></span>")
+	$("#small-status-<%= @car.id %>").html("<span class='label success'><a data-method='put' href='/cars/<%= @car.id%>/status?sold=false'>set available</a></span>")
+
+<% else %>
+	$("#status-<%= @car.id %>").html("<span class='label alert'><a data-method='put' href='/cars/<%= @car.id%>/status?sold=true'>set sold</a></span>");
+	$("#small-status-<%= @car.id %>").html("<span class='label alert'><a data-method='put' href='/cars/<%= @car.id%>/status?sold=true'>set sold</a></span>");
+<% end %>

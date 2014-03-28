@@ -1,0 +1,66 @@
+<div class='row margin-top'>
+
+	<div class='small-12 columns'>
+	<h3>offers for <%= "#{@car.year} #{@car.make} #{@car.model} #{number_to_currency(@car.price, :precision => 0)}"%></h3>
+	</div>
+	<div class='small-12 columns'>
+		<h6><%= "#{@car.miles} miles #{@car.vin}" %></h6>
+	</div>
+
+	<div class='small-12 columns hide-for-small'>
+
+	<table class='responsive table center'>
+  		<thead>
+		    <tr>
+		      <th>email</th>
+		      <th>amount</th>
+		      <th>reject</th>
+		      <th>counter</th>
+		      <th>accept</th>
+		      <th>activity</th>
+		      <th>archive id</th>
+		    </tr>
+  		</thead>
+
+  		<tbody>
+    	<% @offers.each do |offer| %>
+      		<tr>
+	        <td><%= link_to offer.email, offer, data: {no_turbolink: true} %></td>
+	        <td><%= number_to_currency(offer.amount, :precision => 0) %></td>
+	        <td id="reject-<%= offer.id %>"><%= offer.rejected? ? raw("<span class='label alert'>rejected</span>") : (link_to 'reject', reject_offer_path(:id => offer.id), method: :delete, :remote => true) %></td>
+	        <td id="counter-<%= offer.id %>"><%= offer.counter.present? ? number_to_currency(offer.counter, :precision => 0) : (link_to 'middle', accept_offer_path(:id => offer.id, :counter_amount => ((offer.amount + @car.price) / 2)), method: :put, :remote => true) %></td>
+	        <td id="accept-<%= offer.id %>"><%= offer.rejected? ? '' : ( offer.respond? ? ( offer.counter.present? ? raw("<span class='label'>countered</span>") : raw("<span class='label success'>accepted</span>") ) : (link_to 'accept', accept_offer_path(:id => offer.id), method: :put, :remote => true) ) %></td>
+	      
+	    
+	        <td><%= offer.updated_at.strftime("%m/%d/%Y") %></td>
+	        <td><%= link_to "X #{offer.id}", offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      		</tr>
+    	<% end %>
+  		</tbody>
+	</table>
+	</div>
+
+	<div class='small-12 columns show-for-small'>
+		<% @offers.each do |offer| %>
+			<div class='border-section'>
+				<%= offer.email %>
+				<b><%= number_to_currency(offer.amount, :precision => 0) %></b>
+				<div class='right' id="reject-action-<%= offer.id %>"><%= offer.rejected? ? '' : (link_to 'reject', reject_offer_path(:id => offer.id), method: :delete, :remote => true) %></div>
+				<br>
+				<div id="small-status-<%= offer.id %>">
+				<%= offer.rejected? ? raw("<span class='label alert'>rejected</span> on #{offer.updated_at.strftime('%m/%d/%Y')}")  : ( offer.respond? ? ( offer.counter.present? ? raw("<span class='label'>countered</span> with <b>#{number_to_currency(offer.counter, :precision => 0)}</b> on #{offer.updated_at.strftime('%m/%d/%Y')}") : raw("<span class='label success'>accepted</span> on #{offer.updated_at.strftime('%m/%d/%Y')}") ) : (link_to 'accept', accept_offer_path(:id => offer.id), method: :put, :remote => true) ) %>
+				</div>
+			
+			</div>
+		<% end %>
+	</div>
+
+	
+	<br>
+	<div class='small-12 columns top-margin'>
+		<div class='left'><%= paginate @offers %></div>
+		<div class='right'><%= link_to 'Back To Inventory', cars_path %></div>
+	</div>
+
+
+</div>

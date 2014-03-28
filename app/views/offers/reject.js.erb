@@ -1,0 +1,5 @@
+$("#reject-<%= @offer.id %>").html("<span class='label alert'>rejected</span>");
+$("#accept-<%= @offer.id %>").html("");
+$("#counter-<%= @offer.id %>").html("$0");
+$("#small-status-<%= @offer.id %>").html("<span class='label alert'>rejected</span> on <%= @offer.updated_at.strftime('%m/%d/%Y') %>");
+$("#reject-action-<%= @offer.id %>").html('');

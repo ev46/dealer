@@ -1,17 +1,18 @@
-<h1>Listing cars</h1>
+<div class='row'>
+<h2>inventory</h2>
 
-<table>
+<div class='hide-for-small'>
+<table class='responsive table center'>
   <thead>
     <tr>
-      <th>Two door</th>
-      <th>Year</th>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Vin</th>
-      <th>Price</th>
-      <th>Warranty</th>
-      <th></th>
-      <th></th>
+      <th>year</th>
+      <th>make</th>
+      <th>model</th>
+      <th>lowest</th>
+      <th>price</th>
+      <th>offers</th>
+      <th>info</th>
+      <th>status</th>
       <th></th>
     </tr>
   </thead>
@@ -19,21 +20,46 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.two_door %></td>
-        <td><%= car.year %></td>
+        <td><%= link_to car.year, car, data: {no_turbolink: true} %></td>
         <td><%= car.make %></td>
         <td><%= car.model %></td>
-        <td><%= car.vin %></td>
-        <td><%= car.price %></td>
-        <td><%= car.warranty %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= number_to_currency(car.price - car.discount, :precision => 0) %></td>
+        <td><%= number_to_currency(car.price, :precision => 0) %></td>
+        <td><%= link_to car.offers.count, car_offers_path(car), data: {no_turbolink: true} %></td>
+        <td><%= link_to 'edit', edit_car_path(car), data: {no_turbolink: true} %></td>
+        <td id="status-<%= car.id %>"><%= car.sold? ? (link_to raw("<span class='label success'>set available</span>"), car_status_path(:id => car.id, :sold => false), method: :put, :remote => true) : (link_to raw("<span class='label alert'>set sold</span>"), car_status_path(:id => car.id, :sold => true), method: :put, :remote => true ) %></td>
+        <td><%= link_to 'delete', car, method: :delete, data: { confirm: 'Are you sure?', no_turbolink: true } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
-<br>
+<div class='show-for-small'>
+  <div class='small-12 columns'>
+  <% @cars.each do |car| %>
+    <div class='border-section'>
 
-<%= link_to 'New Car', new_car_path %>
+      <%= "#{car.year} #{car.make} #{car.model} #{number_to_currency(car.price, :precision => 0)}" %>
+      <div class='right'><%= link_to car.offers.count, car_offers_path(car), data: {no_turbolink: true} %></div>
+      <%= link_to 'edit', edit_car_path(car), data: { no_turbolink: true } %>
+      <div id="small-status-<%= car.id %>"><%= car.sold? ? (link_to raw("<span class='label success'>set available</span>"), car_status_path(:id => car.id, :sold => false), method: :put, :remote => true) : (link_to raw("<span class='label alert'>set sold</span>"), car_status_path(:id => car.id, :sold => true), method: :put, :remote => true ) %></div>
+    </div>
+
+  <% end %>
+  </div>
+</div>
+
+<div class='small-12 columns'>
+<%= paginate @cars %>
+</div>
+
+
+<div class='small-12 columns'>
+<div class='left'>
+  <%= link_to 'Add New Car', new_car_path, data: {no_turbolink: true} %>
+  </div>
+</div>
+
+
+</div>
