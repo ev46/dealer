@@ -1,5 +1,8 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:offers, :show, :edit, :update, :destroy, :status]
+  before_filter :auth_admin!, except: [:show]
+  skip_before_filter :authenticate_user!, only: [:show]
+  #skip_before_filter :auth_admin!, only: [:show]
 
   # GET /cars
   # GET /cars.json
@@ -15,6 +18,7 @@ class CarsController < ApplicationController
   # GET /cars/new
   def new
     @car = Car.new
+    @store = Store.first
   end
 
   # GET /cars/1/edit
@@ -24,7 +28,7 @@ class CarsController < ApplicationController
 
   # GET /cars/:id/offers
   def offers
-    @offers = @car.offers.order("amount DESC").page(index_params[:page]).per(4)
+    @offers = @car.offers.order("amount DESC").page(index_params[:page]).per(10)
     #@offers = @car.offers( :order => [ "amount DESC" ] )
   end
 
@@ -104,5 +108,9 @@ class CarsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
       params.require(:car).permit(:two_door, :year, :miles, :make, :model, :vin, :price, :warranty, :sold, :attached_assets_attributes  => [:avatar] )
+    end
+
+    def auth_admin!
+      redirect_to root_path unless (current_user && current_user.admin?)
     end
 end

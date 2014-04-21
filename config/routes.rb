@@ -11,6 +11,11 @@ Cars::Application.routes.draw do
   delete 'offers/:id' => 'offers#reject', as: :reject_offer
   post 'offers' => 'offers#create'
   put 'cars/:id/status' => 'cars#status', as: :car_status
+  delete 'attached_assets/:id' => 'attached_assets#destroy', as: :delete_asset
+
+  get 'store/edit' => 'store#edit', as: :edit_store
+  put 'store/update' => 'store#update', as: :update_store
+  get 'about' => 'home#about', as: :about
 
 
 end

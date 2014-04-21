@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+<h3>Your offer was not accepted</h3>
+<div>Your offer of <%= number_to_currency(@offer.amount) %> for the <%= "#{@car.year} #{@car.make} #{@car.model}" %> was not accepted.</div>
+<div>Thank you for your interest.</div>
+</body>
+</html>

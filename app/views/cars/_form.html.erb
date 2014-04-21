@@ -13,7 +13,11 @@
     <%= f.input :price, :label => false, :placeholder => 'Price' %>
     <%= f.input :discount %>
 
-    <%= f.input :warranty, :input_html => { :value => '1 Year drivetrain parts and labor'} %>
+    <% if @store %>
+      <%= f.input :warranty, :input_html => { :value => @store.warranty} %>
+    <% else %>
+      <%= f.input :warranty %>
+    <% end %>
     <%= file_field_tag('car_attached_assets_avatar', multiple: true, name: "car[attached_assets_attributes][][avatar]") %>
   </div>
 

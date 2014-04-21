@@ -13,20 +13,44 @@
 	</section>
 </div>
 
+<div class='home-action'>
+ <div class='row'>
+      <%= simple_form_for :search, method: :get, :url => root_path do |f| %>
+      <div class='large-6 columns'>
+        <div class='row collapse'>
+          <div class='small-8 columns'>
+            <%= f.input :make, :collection => @makes, :default => 1, :label => false %>
+          </div>
+          <div class='small-4 columns'>
+            <button type="submit" class="button postfix">filter make</button>
+          </div>
+        </div>
+      <% end %> 
+      </div>
+ </div>
+     
+</div>
+
+
 <br>
 
 <div class='row'>
 
-<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
 
 	<% @cars.each do |car| %>
 		<li>
-      <div class='panel left-20'>
-			<a href="/cars/<%=car.id%>">
-				
-      			<%= image_tag car.attached_assets.first.avatar.url(:medium) %>
+      <div class=' left-20'>
+			<a href="/cars/<%=car.id%>" data-no-turbolink>
+      <div class='image'>
+				  
+      	<%= image_tag car.attached_assets.first.avatar.url(:medium) %>
+        <h6>
+          <span><%= "#{car.year} #{car.make} #{car.model} #{car.sold? ? 'SOLD' : number_to_currency(car.price, :precision => 0)}" %></span>
+        </h6>
+      </div>
       </a>
-      <h6><%= "#{car.year} #{car.make} #{car.model} #{number_to_currency(car.price, :precision => 0)} #{car.sold? ? 'SOLD' : ''}" %></h6>
+      
       </div>
 		</li>
 	<% end %>

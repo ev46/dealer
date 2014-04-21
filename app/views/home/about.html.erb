@@ -1,0 +1,36 @@
+<div class='row margin-top'>
+<h2>about <%= @store.name.present? ? @store.name : 'us' %></h2>
+<hr/>
+
+<h5><%= @store.about %></h5>
+<div class='large-12 columns bottom-20'>
+<div class='large-6 columns'>
+	<h5><%= @store.address %></h5>
+	<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@store.address}" %>
+</div>
+<div class='large-6 columns'>
+	<h5>Our Hours</h5>
+	<% @store.open_times.keys.each do |day| %>
+		<div>
+			<%= "#{day} - #{@store.open_times[day]}" %>
+		</div>
+	<% end %>
+</div>
+</div>
+
+<hr/>
+<div class='small-12 columns'>
+<% if @store.phone.present? %>
+	<h5>phone: <%= @store.phone %></h5>
+<% end %>
+<% if @store.email.present? %>
+	<h5><%= @store.email %></h5>
+<% end %>
+<% if @store.url.present? %>
+	<h5><%= @store.url %></h5>
+<% end %>
+
+<h8>powered by Byterover &copy;</h8>
+</div>
+
+</div>

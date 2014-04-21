@@ -1,0 +1,43 @@
+
+<div class='row'>
+	<div class='large-4 medium-4 columns'>
+	<h3>Offer from <%= @offer.email %></h3></div>
+	</div>
+<div class='row'>
+	<div class='large-4 columns'>
+		<h5>for <%= number_to_currency(@offer.amount, :precision => 0) %></h5>
+	</div>
+	
+</div>
+
+<div class='row'>
+<%= simple_form_for @offer, :url => accept_offer_path(:id => @offer.id), method: :put do |f| %>
+
+	<%= f.hidden_field :car_id, :value => @offer.car_id %>
+	<div class='large-4 medium-4 columns'>
+	<%= f.input_field :counter, :as => :decimal %>
+	<%= f.submit 'Counter', :class => "button" %>
+	</div>
+
+<% end %>
+</div>
+
+<!-- <form data-abide action="/offers" method="PUT" >
+			
+		<%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+		<%= hidden_field_tag :car_id, @offer.car_id -%>
+
+		<div class='row'>
+			<div class='large-4 medium-4 columns'>
+				<input type="number" name='counter_amount' placeholder='conter offer' required >
+				<small class="error">A number value is required</small>
+			</div>
+		</div>
+		
+		<div class='row'>
+			<div class='large-2 small-4 columns'>
+				<button type="submit" class="button postfix">Counter</button>
+			</div>
+		</div>		
+</form> -->
+

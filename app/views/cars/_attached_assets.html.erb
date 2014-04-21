@@ -1,0 +1,7 @@
+<% @car.attached_assets.each do |image| %>
+
+<div class='small-12 columns' id="asset-<%= image.id %>">
+	<%= image_tag(image.avatar(:small)) %>
+	<%= link_to 'Delete', delete_asset_path(:id => image.id), method: :delete, :remote => true, data: { confirm: 'Are you sure?', no_turbolink: true } %>
+</div> 
+<% end %>

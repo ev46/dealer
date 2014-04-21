@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+<h3>Counter offer</h3>
+<div>Hello!  Your offer was countered with <%= number_to_currency(@offer.counter) %> for the <%= "#{@car.year} #{@car.make} #{@car.model}" %>.</div>
+<div>If this counter offer is acceptable, you may stop over our delearship and it will be honored for the next 3 days.</div>
+<div>NOTE: By offering this counter offer we promise to honor this price once you inspect the vehicle, this does not mean we will hold the vehicle for you.</div>
+<div>We are looking forward to seeing you.</div>
+<div>Thank you!</div>
+</body>
+</html>
