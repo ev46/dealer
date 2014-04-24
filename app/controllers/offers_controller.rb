@@ -72,7 +72,7 @@ class OffersController < ApplicationController
 		respond_to do |format|
 			if @offer.save
 				if @offer.counter.present?
-					#OfferMailer.counter(@offer).deliver
+					OfferMailer.counter(@offer).deliver
 				else
 					OfferMailer.accept(@offer).deliver
 				end

@@ -74,7 +74,7 @@ Cars::Application.configure do
 
     config.action_mailer.smtp_settings = {
       :address   => "smtp.mandrillapp.com",
-      :port      => 587,
+      :port      => 25,
       :user_name => ENV["MANDRILL_USERNAME"],
       :password  => ENV["MANDRILL_APIKEY"]
     }

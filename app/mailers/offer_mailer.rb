@@ -1,5 +1,5 @@
 class OfferMailer < ActionMailer::Base
-	default :from => "notifications@#{ENV['DOMAIN']}"
+	default :from => "notifications@hondacny.com"
 
 	def accept(offer)
 		@offer = offer
