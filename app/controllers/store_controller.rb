@@ -23,11 +23,11 @@ class StoreController < ApplicationController
 	private
 
 	def set_store
-		@store = Store.first
+		@store = Store.last
 	end 
 
 	def store_params
-		params.require(:store).permit(:name, :about, :email, :phone, :fax, :url, :address, :sun, :mon, :tus, :wed, :thr, :fri, :sat, :warranty, :url, :time_zone)
+		params.require(:store).permit(:name, :about, :cars_per_page, :email, :phone, :fax, :url, :address, :sun, :mon, :tus, :wed, :thr, :fri, :sat, :warranty, :url, :time_zone)
 	end
 
 	def auth_admin!

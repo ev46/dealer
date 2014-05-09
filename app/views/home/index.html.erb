@@ -45,6 +45,11 @@
       <div class='image'>
 				  
       	<%= image_tag car.attached_assets.first.avatar.url(:medium) %>
+        <% if car.soon? %>
+        <div class='soon'>
+          <span>coming soon</span>
+        </div>
+        <% end %>
         <h6>
           <span><%= "#{car.year} #{car.make} #{car.model} #{car.sold? ? 'SOLD' : number_to_currency(car.price, :precision => 0)}" %></span>
         </h6>

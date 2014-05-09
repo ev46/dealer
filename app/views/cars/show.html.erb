@@ -19,8 +19,20 @@
   </div>
   <div class='small-12 columns'>
     <h5><strong>Milage:</strong> <%= @car.miles %></h5>
+    <% if @car.vin.present? %>
     <h5><strong>VIN:</strong> <%= @car.vin %></h5>
+    <% end %>
   </div>
+  <div class='small-12 columns'>
+    <h5><%= @car.details %></h5>
+  </div>
+
+  <% if @car.soon? %>
+    <div class='small-12 columns'>
+      <h5>Coming soon</h5>
+    </div>
+  <% end %>
+
   <div class='small-12 columns'>
     <h5><%= @car.warranty %></h5>
   </div>
