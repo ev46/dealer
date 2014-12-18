@@ -86,6 +86,14 @@ Cars::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
 
+  # paperclip and s3 storage config data
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      
+    }
+  }
+
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
