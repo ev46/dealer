@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <%= f.input :two_door, :label => " is this a 2 door vehicle?" %>
     <%= f.input :soon, :label => " coming soon" %>
-    <%= f.input :year, collection: (Time.now.year - 10)..(Time.now.year),:selected => (@car.year.present? ? @car.year : Time.now.year), :label => false %>
+    <%= f.input :year, collection: (Time.now.year - 20)..(Time.now.year),:selected => (@car.year.present? ? @car.year : Time.now.year), :label => false %>
     <%= f.input :make, :label => false, :placeholder => 'Make' %>
     <%= f.input :model, :label => false, :placeholder => 'Model' %>
     <%= f.input :miles, :label => false, :placeholder => 'Miles' %>
